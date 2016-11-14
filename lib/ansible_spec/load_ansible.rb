@@ -1,5 +1,4 @@
 require 'hostlist_expression'
-require 'oj'
 require 'open3'
 
 module AnsibleSpec
@@ -84,7 +83,7 @@ module AnsibleSpec
   def self.get_dynamic_inventory(file)
     so, se, st = Open3.capture3("./#{file}")
     raise "Error while executing dynamic inventory script: #{se}" if so.empty?
-    Oj.load(so.to_s)
+    JSON.load(so.to_s)
   end
 
   # param ansible_ssh_port=22
